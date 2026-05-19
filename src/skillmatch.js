@@ -240,6 +240,22 @@ buscarVagasDaAPI().then((vagasRecebidas) => {
   console.log("Primeira vaga:", vagasRecebidas[0].titulo);
   console.log("------------------------");
 });
+// CARD 012: ASYNC/AWAIT - função async iniciarSistema() que consome a promise
+async function iniciarSistema() {
+  console.log("\n--- INICIANDO SISTEMA COM ASYNC/AWAIT ---");
+  console.log("Buscando vagas no servidor... ⏳");
+  
+  // await espera a Promise resolver sem usar .then()
+  const vagasRecebidas = await buscarVagasDaAPI();
+  
+  console.log("Vagas recebidas com sucesso! ✅");
+  console.log(`Recebemos ${vagasRecebidas.length} vagas do servidor`);
+  console.log(`Primeira vaga: ${vagasRecebidas[0].titulo}`);
+  console.log("--- SISTEMA FINALIZADO ---");
+}
+
+// Testando o Card 012
+iniciarSistema();
 
 
 

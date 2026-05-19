@@ -150,7 +150,21 @@ for (let i = 0; i < vagasJunior.length; i++) {
   console.log(`${i + 1}º Lugar: ${vaga.titulo} | ${match}% Match`);
 }
 console.log("-------------------------------------");
+function acharVagaMaisCompativel(candidato, vagas) {
+  // Ordena da maior pra menor
+  vagas.sort((a, b) => {
+    return calcularMatch(candidato, b) - calcularMatch(candidato, a);
+  });
 
+  return vagas[0]; // Retorna só a primeira = melhor match
+}
+// Testando o Card 008
+const melhorVaga = acharVagaMaisCompativel(devPremium, vagasJunior);
 
+console.log("--- MELHOR VAGA PRA VOCÊ ---");
+console.log(`${melhorVaga.titulo} | ${melhorVaga.empresa}`);
+console.log(`Match: ${calcularMatch(devPremium, melhorVaga)}%`);
+console.log("Essa é sua vaga mais compatível!");
+console.log("----------------------------");
 
 

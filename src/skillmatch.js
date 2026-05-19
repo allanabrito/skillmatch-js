@@ -29,3 +29,36 @@ const vaga1 = new Vaga(
 );
 
 vaga1.exibirResumo();
+// Card 003 - POO BASE: Classe Candidato
+class Candidato {
+  constructor(nome, habilidades, nivel, pretensaoSalarial) {
+    this.nome = nome;
+    this.habilidades = habilidades;
+    this.nivel = nivel;
+    this.pretensaoSalarial = pretensaoSalarial;
+  }
+
+  exibirPerfil() {
+    console.log('-----------------------------');
+    console.log(`Candidato: ${this.nome}`);
+    console.log(`Nível: ${this.nivel}`);
+    console.log(`Pretensão: R$ ${this.pretensaoSalarial}`);
+    console.log(`Skills: ${this.habilidades.join(', ')}`);
+    console.log('-----------------------------');
+  }
+}
+
+// TESTE do card 003 - pode deixar junto do teste da Vaga
+const devAllana = new Candidato(
+  "Allana Brito",
+  ["JavaScript", "Node.js", "Git", "React"],
+  "Júnior",
+  4500
+);
+
+devAllana.exibirPerfil();
+
+
+
+
+

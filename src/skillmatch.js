@@ -81,7 +81,34 @@ const devPremium = new CandidatoPremium(
 );
 
 devPremium.exibirPerfilPremium();
+// Card 005 - ALGORITMO DE MATCH
+function calcularMatch(candidato, vaga) {
+  let skillsEmComum = 0;
+  
+  // Percorre cada skill do candidato
+  for (let skill of candidato.habilidades) {
+    // Se a vaga também pede essa skill, soma ponto
+    if (vaga.habilidadesNecessarias.includes(skill)) {
+      skillsEmComum++;
+    }
+  }
+  
+  // Calcula %: skills em comum / total de requisitos da vaga * 100
+  let porcentagem = (skillsEmComum / vaga.habilidadesNecessarias.length) * 100;
+  return porcentagem.toFixed(0); // retorna sem casas decimais
+}
 
+// TESTE: 3 vagas fictícias pra comparar com seu perfil
+const vagaFrontend = new Vaga("Frontend Jr", "Tech Solutions", ["HTML", "CSS", "JavaScript", "React"], "Júnior", 3500);
+const vagaBackend = new Vaga("Backend Jr", "Data Corp", ["Node.js", "SQL", "API", "Git"], "Júnior", 4000);
+const vagaFullstack = new Vaga("Fullstack Jr", "Startup X", ["JavaScript", "Node.js", "React", "Git", "SQL"], "Júnior", 5000);
+
+// Testando o match com seu perfil premium
+console.log("--- ALGORITMO DE MATCH ---");
+console.log(`Match com ${vagaFrontend.titulo}: ${calcularMatch(devPremium, vagaFrontend)}%`);
+console.log(`Match com ${vagaBackend.titulo}: ${calcularMatch(devPremium, vagaBackend)}%`);
+console.log(`Match com ${vagaFullstack.titulo}: ${calcularMatch(devPremium, vagaFullstack)}%`);
+console.log("--------------------------");
 
 
 

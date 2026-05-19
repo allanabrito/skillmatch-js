@@ -188,5 +188,36 @@ contarAnalise(); // Análise #3
 console.log("--- TESTE DO CLOSURE ---");
 console.log("O contador lembrou de todas as execuções!");
 console.log("------------------------");
+// Card 010 - FUNÇÃO COMPLETA COM MENSAGEM
+function executarAnaliseCompleta(candidato, vagas) {
+  console.log(`\n=== ANÁLISE SKILLMATCH PARA ${candidato.nome.toUpperCase()} ===`);
+  
+  // 1. Filtra vagas do nível
+  const vagasCompativeis = vagas.filter(vaga => vaga.nivel === candidato.nivel);
+  
+  // 2. Acha a melhor vaga
+  const melhorVaga = acharVagaMaisCompativel(candidato, vagasCompativeis);
+  const porcentagem = calcularMatch(candidato, melhorVaga);
+  
+  // 3. Mensagem de compatibilidade
+  console.log(`\nOlá, ${candidato.nome}!`);
+  console.log(`Analisamos ${vagasCompativeis.length} vagas do seu nível.`);
+  console.log(`\n🎯 MELHOR OPORTUNIDADE PRA VOCÊ:`);
+  console.log(`${melhorVaga.titulo} na ${melhorVaga.empresa}`);
+  console.log(`Match: ${porcentagem}%`);
+  
+  if (porcentagem >= 80) {
+    console.log("Status: SUPER COMPATÍVEL! Se inscreve já! 🚀");
+  } else if (porcentagem >= 60) {
+    console.log("Status: Boa compatibilidade. Vale a pena aplicar! 💪");
+  } else {
+    console.log("Status: Continue estudando pra aumentar o match 📚");
+  }
+  
+  console.log("==========================================\n");
+}
+
+// Testando o Card 010
+executarAnaliseCompleta(devPremium, vagasJunior);
 
 

@@ -57,7 +57,30 @@ const devAllana = new Candidato(
 );
 
 devAllana.exibirPerfil();
+// Card 004 - HERANÇA: Classe CandidatoPremium
+class CandidatoPremium extends Candidato {
+  constructor(nome, habilidades, nivel, pretensaoSalarial, skillsDestaque) {
+    super(nome, habilidades, nivel, pretensaoSalarial); // pega tudo do pai
+    this.skillsDestaque = skillsDestaque; // adiciona coisa nova
+  }
 
+  exibirPerfilPremium() {
+    this.exibirPerfil(); // usa o método que já existe no pai
+    console.log(`Destaques: ${this.skillsDestaque.join(', ')}`);
+    console.log('--- PERFIL PREMIUM ---');
+  }
+}
+
+// TESTE: Criando um candidato premium
+const devPremium = new CandidatoPremium(
+  "Allana Brito",
+  ["JavaScript", "Node.js", "Git", "React"],
+  "Júnior",
+  4500,
+  ["GitHub 50+ stars", "Projeto Open Source"]
+);
+
+devPremium.exibirPerfilPremium();
 
 
 

@@ -109,6 +109,32 @@ console.log(`Match com ${vagaFrontend.titulo}: ${calcularMatch(devPremium, vagaF
 console.log(`Match com ${vagaBackend.titulo}: ${calcularMatch(devPremium, vagaBackend)}%`);
 console.log(`Match com ${vagaFullstack.titulo}: ${calcularMatch(devPremium, vagaFullstack)}%`);
 console.log("--------------------------");
+// Card 006 - FILTRO POR NÍVEL
+function filtrarVagasPorNivel(candidato, listaDeVagas) {
+  let vagasCompativeis = [];
+  
+  for (let vaga of listaDeVagas) {
+    // Se o nível da vaga bate com o nível do candidato
+    if (vaga.nivel === candidato.nivel) {
+      vagasCompativeis.push(vaga);
+    }
+  }
+  
+  return vagasCompativeis;
+}
+
+// TESTE: Juntar todas as vagas num array
+const todasAsVagas = [vagaFrontend, vagaBackend, vagaFullstack];
+
+// Filtrar só as vagas Júnior pra você
+const vagasJunior = filtrarVagasPorNivel(devPremium, todasAsVagas);
+
+console.log("--- VAGAS FILTRADAS POR NÍVEL ---");
+for (let vaga of vagasJunior) {
+  let match = calcularMatch(devPremium, vaga);
+  console.log(`${vaga.titulo} | ${vaga.empresa} | Match: ${match}%`);
+}
+console.log("---------------------------------");
 
 
 

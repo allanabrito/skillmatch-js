@@ -219,5 +219,27 @@ function executarAnaliseCompleta(candidato, vagas) {
 
 // Testando o Card 010
 executarAnaliseCompleta(devPremium, vagasJunior);
+// Card 011 - PROMISE: BUSCAR VAGAS SIMULANDO API
+function buscarVagasDaAPI() {
+  console.log("Buscando vagas no servidor... ⏳");
+
+  return new Promise((resolve, reject) => {
+    // Simula 2 segundos de espera do servidor
+    setTimeout(() => {
+      const vagasDoServidor = vagasJunior; // usa suas vagas já criadas
+      console.log("Vagas recebidas com sucesso! ✅");
+      resolve(vagasDoServidor); // Entrega as vagas
+    }, 2000); // 2000ms = 2s
+  });
+}
+
+// Testando o Card 011 com.then()
+console.log("--- TESTE DA PROMISE ---");
+buscarVagasDaAPI().then((vagasRecebidas) => {
+  console.log(`Recebemos ${vagasRecebidas.length} vagas do servidor`);
+  console.log("Primeira vaga:", vagasRecebidas[0].titulo);
+  console.log("------------------------");
+});
+
 
 

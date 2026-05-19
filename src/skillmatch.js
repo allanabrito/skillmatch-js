@@ -166,5 +166,27 @@ console.log(`${melhorVaga.titulo} | ${melhorVaga.empresa}`);
 console.log(`Match: ${calcularMatch(devPremium, melhorVaga)}%`);
 console.log("Essa é sua vaga mais compatível!");
 console.log("----------------------------");
+// Card 009 - CLOSURE: CONTADOR DE ANÁLISES
+function criarContadorDeAnalises() {
+  let totalDeAnalises = 0; // Variável "presa" na closure
+  
+  return function() {
+    totalDeAnalises++; // Incrementa a cada chamada
+    console.log(`Análise #${totalDeAnalises} executada`);
+    return totalDeAnalises;
+  }
+}
+
+// Criando o contador
+const contarAnalise = criarContadorDeAnalises();
+
+// Testando: toda vez que rodar uma análise, chama o contador
+contarAnalise(); // Análise #1
+contarAnalise(); // Análise #2 
+contarAnalise(); // Análise #3
+
+console.log("--- TESTE DO CLOSURE ---");
+console.log("O contador lembrou de todas as execuções!");
+console.log("------------------------");
 
 

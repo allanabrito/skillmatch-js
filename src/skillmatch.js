@@ -135,6 +135,22 @@ for (let vaga of vagasJunior) {
   console.log(`${vaga.titulo} | ${vaga.empresa} | Match: ${match}%`);
 }
 console.log("---------------------------------");
+// Card 007 - RANKING POR MATCH
+// Pega as vagas filtradas e ordena por % de match
+vagasJunior.sort((vagaA, vagaB) => {
+  let matchA = calcularMatch(devPremium, vagaA);
+  let matchB = calcularMatch(devPremium, vagaB);
+  return matchB - matchA; // Maior primeiro
+});
+
+console.log("--- RANKING DE VAGAS RECOMENDADAS ---");
+for (let i = 0; i < vagasJunior.length; i++) {
+  let vaga = vagasJunior[i];
+  let match = calcularMatch(devPremium, vaga);
+  console.log(`${i + 1}º Lugar: ${vaga.titulo} | ${match}% Match`);
+}
+console.log("-------------------------------------");
+
 
 
 

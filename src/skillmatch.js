@@ -29,7 +29,20 @@ const vaga1 = new Vaga(
 );
 
 vaga1.exibirResumo();
-// Card 003 - POO BASE: Classe Candidato
+// === CARD 003: CONDICIONAIS + POO BASE ===
+// PARTE 1: Função de Condicionais - 
+function recomendarEstudo(tecnologia) {
+  if (tecnologia === "React") {
+    return "Foque em: React";
+  } else if (tecnologia === "Java") {
+    return "Foque em: Java + Spring";
+  } else if (tecnologia === "Python") {
+    return "Foque em: Python + Django";
+  } else {
+    return "Estude lógica de programação primeiro";
+  }
+}
+// PARTE 2: POO BASE - Classe Candidato -
 class Candidato {
   constructor(nome, habilidades, nivel, pretensaoSalarial) {
     this.nome = nome;
@@ -37,7 +50,7 @@ class Candidato {
     this.nivel = nivel;
     this.pretensaoSalarial = pretensaoSalarial;
   }
-
+  
   exibirPerfil() {
     console.log('-----------------------------');
     console.log(`Candidato: ${this.nome}`);
@@ -256,6 +269,32 @@ async function iniciarSistema() {
 
 // Testando o Card 012
 iniciarSistema();
+// CARD 013: CONDICIONAIS - integra recomendarEstudo com async/await
+async function iniciarSistemaComRecomendacao(tecnologiaEscolhida) {
+  console.log("\n--- CARD 013: SISTEMA COM RECOMENDAÇÃO ---");
+  
+  // 1. Busca as vagas com await
+  console.log("Buscando vagas no servidor... ⏳");
+  const vagasRecebidas = await buscarVagasDaAPI();
+  console.log(`Encontramos ${vagasRecebidas.length} vagas! ✅`);
+  
+  // 2. Usa condicionais através da função recomendarEstudo do Card 003
+  console.log(`\nAnalisando tecnologia: ${tecnologiaEscolhida}`);
+  const recomendacao = recomendarEstudo(tecnologiaEscolhida);
+  
+  // 3. Mostra o resultado com if/else
+  if (vagasRecebidas.length > 0) {
+    console.log(`Temos vagas! ${recomendacao}`);
+  } else {
+    console.log("Nenhuma vaga encontrada. Mas continua estudando!");
+  }
+  
+  console.log("--- ANÁLISE FINALIZADA ---");
+}
 
+// Testando o Card 013
+iniciarSistemaComRecomendacao("React");
+iniciarSistemaComRecomendacao("Java");
+iniciarSistemaComRecomendacao("Python");
 
 

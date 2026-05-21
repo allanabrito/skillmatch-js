@@ -296,5 +296,31 @@ async function iniciarSistemaComRecomendacao(tecnologiaEscolhida) {
 iniciarSistemaComRecomendacao("React");
 iniciarSistemaComRecomendacao("Java");
 iniciarSistemaComRecomendacao("Python");
+// CARD 015 - HERANÇA OBRIGATÓRIA: VagaFrontEnd extends Vaga
+class VagaFrontEnd extends Vaga {
+  constructor(titulo, empresa, habilidades, nivel, salario, framework) {
+    super(titulo, empresa, habilidades, nivel, salario); // herda tudo da Vaga
+    this.framework = framework; // atributo novo exclusivo do FrontEnd
+  }
+  
+  exibirResumo() {
+    super.exibirResumo(); // chama o exibirResumo() da classe pai Vaga
+    console.log(`Framework principal: ${this.framework}`);
+    console.log(`--- FIM VAGA FRONTEND ---`);
+  }
+}
+
+// TESTE DO CARD 015
+const vagaReact = new VagaFrontEnd(
+  "Dev React Pleno", 
+  "Meta", 
+  ["React", "TypeScript", "Next.js"], 
+  "Pleno", 
+  8000, 
+  "React"
+);
+
+console.log("\n--- TESTE CARD 015: VagaFrontEnd ---");
+vagaReact.exibirResumo();
 
 

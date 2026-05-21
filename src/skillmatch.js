@@ -343,3 +343,19 @@ console.log(`\n--- TESTE CARD 016 ---`);
 console.log(`Compatibilidade: ${resultado.porcentagem}%`);
 console.log(`Skills que batem:`, resultado.skillsCompativeis);
 
+// --- CARD 017: FUNÇÃO COM CALLBACK ---
+function simularBuscaVagas(callback) {
+  console.log("Buscando vagas... aguarde 2s");
+  
+  setTimeout(() => {
+    const vagasEncontradas = todasAsVagas.slice(0, 2); // pega as 2 primeiras vagas
+    callback(vagasEncontradas); // "te liga de volta" com as vagas
+  }, 2000);
+}
+
+// TESTE DA CALLBACK:
+console.log("\n--- TESTE CARD 017 ---");
+simularBuscaVagas((vagas) => {
+  console.log("Callback executada! Vagas encontradas:");
+  console.log(vagas);
+});

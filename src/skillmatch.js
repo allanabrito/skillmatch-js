@@ -296,31 +296,55 @@ async function iniciarSistemaComRecomendacao(tecnologiaEscolhida) {
 iniciarSistemaComRecomendacao("React");
 iniciarSistemaComRecomendacao("Java");
 iniciarSistemaComRecomendacao("Python");
-// CARD 015 - HERANÇA OBRIGATÓRIA: VagaFrontEnd extends Vaga
+
+// --- CARD 016: FUNÇÃO DE COMPATIBILIDADE ---
+function calcularCompatibilidade(skillsCandidato, skillsVaga) {
+    const skillsIguais = skillsVaga.filter(skill => skillsCandidato.includes(skill));
+    const pontos = skillsIguais.length * 10;
+    const porcentagem = (pontos / (skillsVaga.length * 10)) * 100;
+    
+    return {
+        porcentagem: porcentagem.toFixed(2),
+        skillsCompativeis: skillsIguais
+    };
+}
+
+// --- TESTE CARD 016 ---
+const skillsDev = ['JavaScript', 'React', 'CSS', 'Node'];
+const skillsVaga = ['JavaScript', 'React', 'TypeScript', 'Next.js'];
+
+const resultado = calcularCompatibilidade(skillsDev, skillsVaga);
+console.log(`\n--- TESTE CARD 016 ---`);
+console.log(`Compatibilidade: ${resultado.porcentagem}%`);
+console.log(`Skills que batem:`, resultado.skillsCompativeis);
+
+// --- CARD 015: HERANÇA ---
 class VagaFrontEnd extends Vaga {
-  constructor(titulo, empresa, habilidades, nivel, salario, framework) {
-    super(titulo, empresa, habilidades, nivel, salario); // herda tudo da Vaga
-    this.framework = framework; // atributo novo exclusivo do FrontEnd
-  }
-  
-  exibirResumo() {
-    super.exibirResumo(); // chama o exibirResumo() da classe pai Vaga
-    console.log(`Framework principal: ${this.framework}`);
-    console.log(`--- FIM VAGA FRONTEND ---`);
+  constructor(titulo, habilidades, nivel, usaFramework) {
+    super(titulo, "Empresa Tech", habilidades, nivel, 5000);
+    this.usaFramework = usaFramework;
   }
 }
 
-// TESTE DO CARD 015
-const vagaReact = new VagaFrontEnd(
-  "Dev React Pleno", 
-  "Meta", 
-  ["React", "TypeScript", "Next.js"], 
-  "Pleno", 
-  8000, 
-  "React"
-);
+// TESTE DA HERANÇA:
+console.log("\n--- TESTE CARD 015 ---");
+const vagaFront = new VagaFrontEnd("Dev React Jr", ["React", "JS"], "Junior", true);
+console.log(vagaFront);
+console.log(`Salário herdado: ${vagaFront.salario}`);
+console.log(`Usa Framework: ${vagaFront.usaFramework}`);
+// --- CARD 017: FUNÇÃO COM CALLBACK ---
+function simularBuscaVagas(callback) {
+  console.log("Buscando vagas... aguarde 2s");
+  
+  setTimeout(() => {
+    const vagasEncontradas = todasAsVagas.slice(0, 2); // pega as 2 primeiras vagas
+    callback(vagasEncontradas); // "te liga de volta" com as vagas
+  }, 2000);
+}
 
-console.log("\n--- TESTE CARD 015: VagaFrontEnd ---");
-vagaReact.exibirResumo();
-
-
+// TESTE DA CALLBACK:
+console.log("\n--- TESTE CARD 017 ---");
+simularBuscaVagas((vagas) => {
+  console.log("Callback executada! Vagas encontradas:");
+  console.log(vagas);
+});

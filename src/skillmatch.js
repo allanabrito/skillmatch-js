@@ -322,5 +322,24 @@ const vagaReact = new VagaFrontEnd(
 
 console.log("\n--- TESTE CARD 015: VagaFrontEnd ---");
 vagaReact.exibirResumo();
+// --- CARD 016: FUNÇÃO DE COMPATIBILIDADE ---
+function calcularCompatibilidade(skillsCandidato, skillsVaga) {
+    const skillsIguais = skillsVaga.filter(skill => skillsCandidato.includes(skill));
+    const pontos = skillsIguais.length * 10;
+    const porcentagem = (pontos / (skillsVaga.length * 10)) * 100;
+    
+    return {
+        porcentagem: porcentagem.toFixed(2),
+        skillsCompativeis: skillsIguais
+    };
+}
 
+// --- TESTE CARD 016 ---
+const skillsDev = ['JavaScript', 'React', 'CSS', 'Node'];
+const skillsVaga = ['JavaScript', 'React', 'TypeScript', 'Next.js'];
+
+const resultado = calcularCompatibilidade(skillsDev, skillsVaga);
+console.log(`\n--- TESTE CARD 016 ---`);
+console.log(`Compatibilidade: ${resultado.porcentagem}%`);
+console.log(`Skills que batem:`, resultado.skillsCompativeis);
 

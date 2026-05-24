@@ -61,7 +61,8 @@ Projeto acadêmico - Análise e Desenvolvimento de Sistemas
 - [ ] Adicionar mais vagas e candidatos para teste
 
 ---
-Confira o SkillMatch funcionando na prática, link do vídeo:
-[https://youtu.be/SKVijZ7IXt8](YouTube)
+Confira o SkillMatch funcionando na prática, link do vídeo: [YouTube](https://youtu.be/SKVijZ7IXt8)
+
+
 
 _Projeto feito com ❤️ para praticar JavaScript puro_
